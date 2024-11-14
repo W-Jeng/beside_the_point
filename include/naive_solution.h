@@ -3,15 +3,14 @@
 #include<iostream>
 #include<iomanip>
 #include<chrono>
+#include "evaluation.h"
 
 class NaiveSolution {
 public:
-    const double min_edge = 0.0;
-    const double max_edge = 1.0;
-
     long int evaluated_instance;
     long int is_equidistant_instance; // this is always equivalent or lower than evaluated instance
-    const long int number_of_runs{1000000};
+    const long int number_of_runs{1000000000};
+    const long int output_every{1000000};
     RandomGenerator rg;
     
     NaiveSolution(): evaluated_instance(0),
@@ -30,7 +29,24 @@ public:
 
     void loop() {
         for (long int i = 0; i < number_of_runs; ++i) {
-            double temp = rg.generate();
+            Point p1(rg.generate(), rg.generate());
+            Point p2(rg.generate(), rg.generate());
+            ++evaluated_instance;
+            if (is_equidistant(p1, p2)) {
+                ++is_equidistant_instance;
+            }
+            // std::cout << "p1:" << p1.repr() << ",p2:" << p2.repr() << std::endl; 
+            // bool equi = is_equidistant(p1, p2);
+            // std::cout << "equidistant? " << equi << std::endl << std::endl;
+            if (evaluated_instance % output_every == 0) {
+                std::cout << "\rRuns: " << evaluated_instance << ", is_equidistant instances: "<<
+                    is_equidistant_instance << ", prob: " << static_cast<double>(is_equidistant_instance)/evaluated_instance;
+            }
         }
+        
+        std::cout << "\rRuns: " << evaluated_instance << ", is_equidistant instances: "<<
+                    is_equidistant_instance << ", prob: " << static_cast<double>(is_equidistant_instance)/evaluated_instance;
+        
+        std::cout << std::endl;
     }
 };
