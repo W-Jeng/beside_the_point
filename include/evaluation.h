@@ -36,10 +36,25 @@ bool is_equidistant(const Point& red, const Point& blue) {
     double distance_to_bottom = blue.y;
     double distance_to_left = blue.x;
     double distance_to_right = 1-blue.x;
-    double min_distance = std::min({distance_to_top, distance_to_bottom,
-        distance_to_left, distance_to_right});
 
-    if (min_distance == distance_to_top) {
+    int min_distance_level;
+    if (distance_to_top < distance_to_bottom &&
+        distance_to_top < distance_to_left &&
+        distance_to_top < distance_to_right) {
+        min_distance_level = 1;
+    } else if (distance_to_bottom < distance_to_top &&
+        distance_to_bottom < distance_to_left && 
+        distance_to_bottom < distance_to_right) {
+        min_distance_level = 2;
+    } else if (distance_to_left < distance_to_top &&
+        distance_to_left < distance_to_bottom &&
+        distance_to_left < distance_to_right) {
+        min_distance_level = 3;
+    } else {
+        min_distance_level = 4;
+    }
+
+    if (min_distance_level == 1) {
         // blue closest to top line y = 1
         // 1 = mx + c;
         // std::cout << "is top line" << std::endl;
@@ -47,14 +62,14 @@ bool is_equidistant(const Point& red, const Point& blue) {
         if (0 <= x_collission_point && x_collission_point <= 1) {
             return true;
         }
-    } else if (min_distance == distance_to_bottom) {
+    } else if (min_distance_level == 2) {
         // blue closest to bottom line y = 0
         // std::cout << "is bottom line" << std::endl;
         double x_collission_point = (-rotated_constant)/rotated_gradient;
         if (0 <= x_collission_point && x_collission_point <= 1) {
             return true;
         }
-    } else if (min_distance == distance_to_left) {
+    } else if (min_distance_level == 3) {
         // blue closest to left line x = 0
         // y = m * 0 +_c
         // std::cout << "is left line" << std::endl;

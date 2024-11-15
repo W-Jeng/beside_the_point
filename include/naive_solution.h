@@ -9,7 +9,7 @@ class NaiveSolution {
 public:
     long int evaluated_instance;
     long int is_equidistant_instance; // this is always equivalent or lower than evaluated instance
-    const long int number_of_runs{1000000000};
+    const long int number_of_runs{100000000};
     const long int output_every{1000000};
     RandomGenerator rg;
     
@@ -35,13 +35,10 @@ public:
             if (is_equidistant(p1, p2)) {
                 ++is_equidistant_instance;
             }
-            // std::cout << "p1:" << p1.repr() << ",p2:" << p2.repr() << std::endl; 
-            // bool equi = is_equidistant(p1, p2);
-            // std::cout << "equidistant? " << equi << std::endl << std::endl;
-            if (evaluated_instance % output_every == 0) {
-                std::cout << "\rRuns: " << evaluated_instance << ", is_equidistant instances: "<<
-                    is_equidistant_instance << ", prob: " << static_cast<double>(is_equidistant_instance)/evaluated_instance;
-            }
+            // if (evaluated_instance % output_every == 0) {
+            //     std::cout << "\rRuns: " << evaluated_instance << ", is_equidistant instances: "<<
+            //         is_equidistant_instance << ", prob: " << static_cast<double>(is_equidistant_instance)/evaluated_instance;
+            // }
         }
         
         std::cout << "\rRuns: " << evaluated_instance << ", is_equidistant instances: "<<
