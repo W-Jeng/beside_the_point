@@ -9,14 +9,19 @@
 #include<cmath>
 #include<math.h>
 // solution to numerical triple integration
-class QuadTriple {
+class SimpsonTriple {
 public:
     const int INTEGRAL_POINTS_1;
     const int INTEGRAL_POINTS_2;
     const int INTEGRAL_POINTS_3;
     
-    QuadTriple(const int& INTEGRAL_POINTS): INTEGRAL_POINTS_1{INTEGRAL_POINTS},
-        INTEGRAL_POINTS_2{INTEGRAL_POINTS}, INTEGRAL_POINTS_3{INTEGRAL_POINTS} {};
+    SimpsonTriple(const int& INTEGRAL_POINTS): INTEGRAL_POINTS_1{INTEGRAL_POINTS},
+        INTEGRAL_POINTS_2{INTEGRAL_POINTS}, INTEGRAL_POINTS_3{INTEGRAL_POINTS} {
+        
+        if (INTEGRAL_POINTS % 2 != 0) {
+            throw std::runtime_error("Integral intervals must be odd.");
+        }
+    };
 
     void solve() {
         auto start = std::chrono::high_resolution_clock::now();
@@ -50,14 +55,18 @@ public:
         const long double interval = (upper_bound-lower_bound)/INTEGRAL_POINTS_1;
         long double total_integral = 0.0;
 
-        long double f_a = 0.5*integrate_2(lower_bound);
-        long double f_b = 0.5*integrate_2(upper_bound);
+        long double f_a = integrate_2(lower_bound);
+        long double f_b = integrate_2(upper_bound);
 
         for (int i = 1; i <= INTEGRAL_POINTS_1-1; ++i) {
-            total_integral += integrate_2(lower_bound + i * interval);
+            if (i % 2 == 0) {
+                total_integral += 2.0*integrate_2(lower_bound + i * interval);
+            } else {
+                total_integral += 4.0*integrate_2(lower_bound + i * interval);
+            }
         }
         total_integral += (f_a + f_b);
-        total_integral = total_integral * interval;
+        total_integral = total_integral * (interval/3.0);
         return total_integral;
     }
 
@@ -68,16 +77,20 @@ public:
         const long double interval = (upper_bound-lower_bound)/INTEGRAL_POINTS_2;
         long double total_integral = 0.0;
 
-        long double f_a = 0.5*integrate_3(lower_bound, y_b);
-        long double f_b = 0.5*integrate_3(upper_bound, y_b);
+        long double f_a = integrate_3(lower_bound, y_b);
+        long double f_b = integrate_3(upper_bound, y_b);
 
         for (int i = 1; i <= INTEGRAL_POINTS_2-1; ++i) {
-            total_integral += integrate_3(lower_bound + i * interval, y_b);
+            if (i%2 == 0) {
+                total_integral += 2.0*integrate_3(lower_bound + i * interval, y_b);
+            } else {
+                total_integral += 4.0*integrate_3(lower_bound + i * interval, y_b);
+            }
         }
         total_integral += (f_a + f_b);
         // std::cout << std::fixed << std::setprecision(15);
         // std::cout << "\ti2: y_b: " << y_b << ", total integral: " << total_integral << std::endl;
-        total_integral = total_integral * interval;
+        total_integral = total_integral * (interval/3.0);
         return total_integral;
     }
 
@@ -92,18 +105,23 @@ public:
         // if we have n subintervals, then we need to evaluate n+1 points
         // including 0th and last points
         // first point
-        long double f_a = 0.5*eval_func(lower_bound, x_b, y_b);
+        long double f_a = eval_func(lower_bound, x_b, y_b);
         // last point
-        long double f_b = 0.5*eval_func(upper_bound, x_b, y_b);
+        long double f_b = eval_func(upper_bound, x_b, y_b);
 
         for (int i = 1; i <= INTEGRAL_POINTS_3-1; ++i) {
-            total_integral += eval_func(lower_bound + i * interval,
-                x_b, y_b);
+            if (i % 2 == 0) {
+                total_integral += 2.0*eval_func(lower_bound + i * interval,
+                    x_b, y_b);
+            } else {
+                total_integral += 4.0*eval_func(lower_bound + i * interval,
+                    x_b, y_b);
+            }
         }
         total_integral += (f_a + f_b); 
         // std::cout << std::fixed << std::setprecision(15);
         // std::cout << "i3: x_b: " << x_b << ", y_b: " << y_b << ", total_integral: " << total_integral << std::endl;
-        total_integral = total_integral * interval;
+        total_integral = total_integral * (interval/3.0);
         return total_integral;
     }
 };
