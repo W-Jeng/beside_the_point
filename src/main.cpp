@@ -5,6 +5,7 @@
 #include "quad_triple.h"
 #include "simpson_triple.h"
 #include "adaptive_quad.h"
+#include "adaptive_boole_quad.h"
 #include<vector>
 #include<cmath>
 
@@ -24,8 +25,12 @@ int main() {
     //     st.solve();
     // }
 
-    const long double tolerance = pow(10, -4);
-    AdaptiveQuad aq(tolerance);
-    aq.solve();
+    // const long double tolerance1 = pow(10, -6);
+    // AdaptiveQuad aq(tolerance1);
+    // aq.solve();
+
+    const long double tolerance2 = pow(10.0L, -13.0L);
+    AdaptiveBooleQuad abq(tolerance2);
+    abq.solve();
     return 0;
 }
