@@ -16,20 +16,16 @@ int main() {
     // long int points = 4;
     // long int multiplier = 2;
 
-    // for (int i = 0; i <= 9; ++i) {
-    //     int integral_points = static_cast<int>(points * std::pow(multiplier, i));
-    //     std::cout << "Integral points: " << integral_points << std::endl; 
-    //     // QuadTriple qt(integral_points);
-    //     // qt.solve();
-    //     SimpsonTriple st(integral_points);
-    //     st.solve();
-    // }
+    // QuadTriple qt(4096);
+    // qt.solve();
+    SimpsonTriple st(16384);
+    st.solve();
 
     // Adaptive Quad Result: 0.49140757883909140239
     // Time taken: 242853 milliseconds
-    const long double tolerance1 = pow(10L, -10.0L);
-    AdaptiveQuad aq(tolerance1);
-    aq.solve();
+    // const long double tolerance1 = pow(10L, -13.0L);
+    // AdaptiveQuad aq(tolerance1);
+    // aq.solve();
 
 
     // adaptive way, inner integrals evaluated using boole, and extrapolated using boole method

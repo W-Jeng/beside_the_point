@@ -38,7 +38,7 @@ public:
         long long int total_function_eval = (long long int) INTEGRAL_POINTS_1 * INTEGRAL_POINTS_2 * INTEGRAL_POINTS_3;
         long double ans = 4.0 * integrate_1();
         std::cout << std::fixed << std::setprecision(30);
-        std::cout << "Point Evaluated: " << total_function_eval << ", Integral: " << ans << std::endl;
+        std::cout << "Point Evaluated: " << total_function_eval << ", Simpson Triple Integral: " << ans << std::endl;
         return;
     }
 

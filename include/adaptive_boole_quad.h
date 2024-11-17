@@ -75,7 +75,7 @@ public:
         long double right = composite_boole_1(mid, upper_bound, tol/2.0);
 
         if (fabsl(left + right - whole) <= std::max(tol, min_tolerance)) {
-            return (left+right) + (left+right-whole)/15.0; // Richardson extrapolation
+            return (left+right) + (left+right-whole)/63.0L; // Richardson extrapolation
         }
 
         return integrate_1(lower_bound, mid, tol / 2.0) + integrate_1(mid, upper_bound, tol / 2.0);
@@ -113,7 +113,7 @@ public:
         long double right = composite_boole_2(y_b, mid, upper_bound, tol/2.0);
 
         if (fabsl(left + right - whole) <= std::max(tol, min_tolerance)) {
-            return (left+right) + (left+right-whole)/15.0; // Richardson extrapolation
+            return (left+right) + (left+right-whole)/63.0L; // Richardson extrapolation
         }
 
         return integrate_2(y_b, lower_bound, mid, tol / 2.0) + integrate_2(y_b, mid, upper_bound, tol / 2.0);
@@ -152,7 +152,7 @@ public:
         long double right = composite_boole_3(x_b, y_b, mid, upper_bound);
 
         if (fabsl(left+right-whole) <= std::max(tol, min_tolerance)) {
-            return (left+right) + (left+right-whole)/15.0; // Richardson extrapolation
+            return (left+right) + (left+right-whole)/63.0L; // Richardson extrapolation
         }
 
         return integrate_3(x_b, y_b, lower_bound, mid, tol/2.0)+
