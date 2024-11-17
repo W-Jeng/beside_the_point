@@ -25,12 +25,16 @@ int main() {
     //     st.solve();
     // }
 
-    // const long double tolerance1 = pow(10, -6);
-    // AdaptiveQuad aq(tolerance1);
-    // aq.solve();
+    // Adaptive Quad Result: 0.49140757883909140239
+    // Time taken: 242853 milliseconds
+    const long double tolerance1 = pow(10L, -10.0L);
+    AdaptiveQuad aq(tolerance1);
+    aq.solve();
 
-    const long double tolerance2 = pow(10.0L, -13.0L);
-    AdaptiveBooleQuad abq(tolerance2);
-    abq.solve();
+
+    // adaptive way, inner integrals evaluated using boole, and extrapolated using boole method
+    // const long double tolerance2 = pow(10.0L, -13.0L);
+    // AdaptiveBooleQuad abq(tolerance2);
+    // abq.solve();
     return 0;
 }

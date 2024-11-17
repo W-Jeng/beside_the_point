@@ -8,9 +8,9 @@
 
 class AdaptiveQuad {
 public:
-    const int INTEGRAL_POINTS_1{100}; // Number of subintervals for y_b
-    const int INTEGRAL_POINTS_2{100}; // Number of subintervals for x_b
-    const int INTEGRAL_POINTS_3{100}; // Number of subintervals for x_r
+    const int INTEGRAL_POINTS_1{40}; // Number of subintervals for y_b
+    const int INTEGRAL_POINTS_2{40}; // Number of subintervals for x_b
+    const int INTEGRAL_POINTS_3{40}; // Number of subintervals for x_r
     const long double tolerance;    // Desired accuracy
 
     AdaptiveQuad(const long double& t_tolerance): tolerance{t_tolerance} {};
