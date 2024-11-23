@@ -8,9 +8,9 @@
 
 class AdaptiveBooleQuad {
 public:
-    const int INTEGRAL_POINTS_1{160}; // Number of subintervals for y_b
-    const int INTEGRAL_POINTS_2{160}; // Number of subintervals for x_b
-    const int INTEGRAL_POINTS_3{160}; // Number of subintervals for x_r
+    const int INTEGRAL_POINTS_1{4}; // Number of subintervals for y_b
+    const int INTEGRAL_POINTS_2{4}; // Number of subintervals for x_b
+    const int INTEGRAL_POINTS_3{4}; // Number of subintervals for x_r
     const long double min_tolerance{pow(10.0L, -20.0L)};
     const long double tolerance;    // Desired accuracy
 
@@ -92,10 +92,8 @@ public:
             long double x = lower_bound + i * h;
             if (i % 2 == 1) {
                 sum += 32.0*integrate_2(x, x, 1.0-x, tol_reduced);
-
             } else if ((i+2) % 4 == 0) {
                 sum += 12.0*integrate_2(x, x, 1.0-x, tol_reduced);
-
             } else {
                 sum += 14.0*integrate_2(x, x, 1.0-x, tol_reduced);
             }
@@ -131,10 +129,8 @@ public:
             long double x = lower_bound + i * h;
             if (i % 2 == 1) {
                 sum += 32.0*integrate_3(x, y_b, 0.0, 1.0, tol_reduced);
-
             } else if ((i+2) % 4 == 0) {
                 sum += 12.0*integrate_3(x, y_b, 0.0, 1.0, tol_reduced);
-
             } else {
                 sum += 14.0*integrate_3(x, y_b, 0.0, 1.0, tol_reduced);
             }

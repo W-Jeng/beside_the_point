@@ -18,8 +18,9 @@ int main() {
 
     // QuadTriple qt(4096);
     // qt.solve();
-    SimpsonTriple st(16384);
-    st.solve();
+
+    // SimpsonTriple st(16384);
+    // st.solve();
 
     // Adaptive Quad Result: 0.49140757883909140239
     // Time taken: 242853 milliseconds
@@ -29,8 +30,8 @@ int main() {
 
 
     // adaptive way, inner integrals evaluated using boole, and extrapolated using boole method
-    // const long double tolerance2 = pow(10.0L, -13.0L);
-    // AdaptiveBooleQuad abq(tolerance2);
-    // abq.solve();
+    const long double tolerance2 = pow(10.0L, -9.0L);
+    AdaptiveBooleQuad abq(tolerance2);
+    abq.solve();
     return 0;
 }
