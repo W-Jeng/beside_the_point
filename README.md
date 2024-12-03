@@ -12,13 +12,7 @@ Name is on the board: https://www.janestreet.com/puzzles/beside-the-point-soluti
 
 ### Solution Overview
 
-Solving this problem using standard Monte Carlo methods would take over **3,000 years**. However, my optimized solution computes the probability in **under 2 seconds** by implementing several advanced numerical methods:
-
-- **Monte Carlo**
-- **Quadrature**
-- **Simpson's Rule**
-- **Adaptive Simpson's Rule**
-- **Adaptive Boole's Rule**
+Solving this problem using standard Monte Carlo methods would take over **3,000 years**. However, my optimized solution computes the probability in **under 2 seconds** by implementing several advanced numerical methods.
 
 ### Implementation Details
 
