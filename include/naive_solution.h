@@ -9,8 +9,8 @@ class NaiveSolution {
 public:
     long int evaluated_instance;
     long int is_equidistant_instance; // this is always equivalent or lower than evaluated instance
-    const long int number_of_runs{100000000};
-    const long int output_every{1000000};
+    const long int number_of_runs{1000000};
+    const long int output_every{100000};
     RandomGenerator rg;
     
     NaiveSolution(): evaluated_instance(0),

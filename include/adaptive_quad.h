@@ -8,9 +8,9 @@
 
 class AdaptiveQuad {
 public:
-    const int INTEGRAL_POINTS_1{40}; // Number of subintervals for y_b
-    const int INTEGRAL_POINTS_2{40}; // Number of subintervals for x_b
-    const int INTEGRAL_POINTS_3{40}; // Number of subintervals for x_r
+    const int INTEGRAL_POINTS_1{4}; // Number of subintervals for y_b
+    const int INTEGRAL_POINTS_2{4}; // Number of subintervals for x_b
+    const int INTEGRAL_POINTS_3{4}; // Number of subintervals for x_r
     const long double tolerance;    // Desired accuracy
 
     AdaptiveQuad(const long double& t_tolerance): tolerance{t_tolerance} {};
@@ -66,7 +66,7 @@ public:
         long double left = composite_simpson_1(lower_bound, mid, tol/2.0);
         long double right = composite_simpson_1(mid, upper_bound, tol/2.0);
 
-        if (fabsl(left + right - whole) <= tol) {
+        if (fabsl(left + right - whole) <= 15.0*tol) {
             return (left+right) + (left+right-whole)/15.0; // Richardson extrapolation
         }
 
@@ -100,7 +100,7 @@ public:
         long double left = composite_simpson_2(y_b, lower_bound, mid, tol/2.0);
         long double right = composite_simpson_2(y_b, mid, upper_bound, tol/2.0);
 
-        if (fabsl(left + right - whole) <= tol) {
+        if (fabsl(left + right - whole) <= 15.0*tol) {
             return (left+right) + (left+right-whole)/15.0; // Richardson extrapolation
         }
 
@@ -135,7 +135,7 @@ public:
         long double left = composite_simpson_3(x_b, y_b, lower_bound, mid);
         long double right = composite_simpson_3(x_b, y_b, mid, upper_bound);
 
-        if (fabsl(left+right-whole) <= tol) {
+        if (fabsl(left+right-whole) <= 15.0*tol) {
             return (left+right) + (left+right-whole)/15.0; // Richardson extrapolation
         }
 

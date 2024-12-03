@@ -37,7 +37,7 @@ public:
     void triple_integral_solution() {
         long double result = 4.0*integrate_1(0.0, 0.5, tolerance);
         std::cout << std::fixed << std::setprecision(20);
-        std::cout << "Adaptive Boole Quad Result: " << result << std::endl;
+        std::cout << "Adaptive Boole Result: " << result << std::endl;
     }
 
     long double eval_func(const long double& x_r, const long double& x_b, const long double& y_b) {
@@ -74,7 +74,7 @@ public:
         long double left = composite_boole_1(lower_bound, mid, tol/2.0);
         long double right = composite_boole_1(mid, upper_bound, tol/2.0);
 
-        if (fabsl(left + right - whole) <= std::max(tol, min_tolerance)) {
+        if (fabsl(left + right - whole) <= std::max(63.0*tol, min_tolerance)) {
             return (left+right) + (left+right-whole)/63.0L; // Richardson extrapolation
         }
 
@@ -110,7 +110,7 @@ public:
         long double left = composite_boole_2(y_b, lower_bound, mid, tol/2.0);
         long double right = composite_boole_2(y_b, mid, upper_bound, tol/2.0);
 
-        if (fabsl(left + right - whole) <= std::max(tol, min_tolerance)) {
+        if (fabsl(left + right - whole) <= std::max(63.0*tol, min_tolerance)) {
             return (left+right) + (left+right-whole)/63.0L; // Richardson extrapolation
         }
 
@@ -147,7 +147,7 @@ public:
         long double left = composite_boole_3(x_b, y_b, lower_bound, mid);
         long double right = composite_boole_3(x_b, y_b, mid, upper_bound);
 
-        if (fabsl(left+right-whole) <= std::max(tol, min_tolerance)) {
+        if (fabsl(left+right-whole) <= std::max(63.0*tol, min_tolerance)) {
             return (left+right) + (left+right-whole)/63.0L; // Richardson extrapolation
         }
 
