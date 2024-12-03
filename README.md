@@ -2,6 +2,8 @@
 
 ## Jane Street November 2024 Puzzle Solution
 
+Name is on the board: https://www.janestreet.com/puzzles/beside-the-point-solution/
+
 ### Problem Statement
 
 *Two random points, one red and one blue, are chosen uniformly and independently from the interior of a square. To ten decimal places¹, what is the probability that there exists a point on the side of the square closest to the blue point that is equidistant to both the blue point and the red point?*
