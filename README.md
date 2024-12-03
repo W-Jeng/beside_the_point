@@ -42,8 +42,8 @@ The solution is implemented in C++ and utilizes CMake for building the project. 
 1. **Clone the Repository**
 
     ```bash
-    git clone https://github.com/yourusername/beside-the-point.git
-    cd beside-the-point
+    git clone https://github.com/W-Jeng/beside_the_point.git
+    cd beside_the_point
     ```
 
 2. **Create a Build Directory**
